@@ -3,6 +3,7 @@ __author__ = 'angelinaprisyazhnaya'
 import pymorphy2
 morph = pymorphy2.MorphAnalyzer()
 import Levenshtein
+import sys
 
 alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
 
@@ -62,11 +63,26 @@ def spellchecking(word):
     return x_normal_i
 
 
-test_word = 'словл'
-p = morph_analysis(test_word)
-d = spellchecking(test_word)
+def test_word(test_word):
+    p = morph_analysis(test_word)
+    d = spellchecking(test_word)
 
-print('word = ' + test_word)
-print('P_misc = ' + str(p[0]))
-print('P_named = ' + str(p[1]))
-print('X_normal_i = ' + str(d))
+    print('word = ' + test_word)
+    print('P_misc = ' + str(p[0]))
+    print('P_named = ' + str(p[1]))
+    print('X_normal_i = ' + str(d))
+
+
+def main():
+    if len(sys.argv) > 1:
+        words = sys.argv[1:]
+    else:
+        words = ["словл", "превед", "масква"]
+    
+    for w in words:
+        test_word(w)
+
+
+if __name__ == '__main__':
+    main()
+
